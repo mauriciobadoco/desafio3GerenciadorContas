@@ -20,18 +20,20 @@ public class GerenciadorController {
 
     @GetMapping (path = "/contas")
     public ResponseEntity<List<MostrarContasModel>> buscarContas(){
-        return ResponseEntity.ok(service.mostrarContas());
+        List<MostrarContasModel> listaContas = service.mostrarContas();
+        return ResponseEntity.ok(listaContas);
     }
 
     @GetMapping (path = "/contas/{id}")
-    public Optional<GerenciadorModel> buscarPorId(@PathVariable Long id){
-        return service.buscarPorId(id);
+    public ResponseEntity<Optional<GerenciadorModel>> buscarPorId(@PathVariable Long id){
+        return ResponseEntity.ok(service.buscarPorId(id));
     }
 
     @PostMapping (path = "/contas")
     @ResponseStatus(HttpStatus.CREATED)
-    public GerenciadorModel cadastrarConta(@RequestBody GerenciadorModel contas){
-        return  service.cadastrarContas(contas);
+    public ResponseEntity<GerenciadorModel> cadastrarConta(@RequestBody GerenciadorModel contas){
+        GerenciadorModel gerenciadorModel = service.cadastrarContas(contas);
+        return  new ResponseEntity<>(gerenciadorModel, HttpStatus.CREATED);
     }
 
     @PutMapping (path ="/contas/{id}")
