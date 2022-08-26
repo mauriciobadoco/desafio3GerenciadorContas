@@ -1,5 +1,7 @@
 package com.desafio.GerenciadorContas.model;
 
+import com.desafio.GerenciadorContas.Enum.StatusConta;
+import com.desafio.GerenciadorContas.Enum.TipoConta;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ public class GerenciadorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idConta;
+    private Long id;
 
     @Column(length = 100,nullable = false)
     private String nome;
@@ -28,15 +30,17 @@ public class GerenciadorModel {
     @Column(length = 50, nullable = false)
     private Double valor;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private LocalDate dataDeVencimento;
 
     @Column(length = 50)
     private LocalDateTime dataDePagamento;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(length = 50)
-    private String status;
+    private StatusConta status;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(length = 50)
-    private String tipoConta;
+    private TipoConta tipo;
 }
