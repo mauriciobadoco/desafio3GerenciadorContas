@@ -7,6 +7,7 @@ import com.desafio.GerenciadorContas.model.AtualizaStatus;
 import com.desafio.GerenciadorContas.model.GerenciadorModel;
 import com.desafio.GerenciadorContas.model.MostrarContasModel;
 import com.desafio.GerenciadorContas.repository.GerenciadorRepository;
+import com.fasterxml.jackson.core.util.VersionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,12 +38,8 @@ public class GerenciadorService {
 
 
     public GerenciadorModel cadastrarContas(GerenciadorModel contas) {
-        if (LocalDate.now().isAfter(contas.getDataDeVencimento())) {
-            contas.setStatus(VENCIDA);
-            return repository.save(contas);
-        } else {
-            contas.setStatus(AGUARDANDO);
-        }
+        VerificaStatus verificaStatus = new VerificaStatus();
+        contas.setStatus(verificaStatus.statusConta(contas));
         return repository.save(contas);
     }
 

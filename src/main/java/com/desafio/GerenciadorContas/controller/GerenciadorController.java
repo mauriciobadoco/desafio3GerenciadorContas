@@ -32,8 +32,8 @@ public class GerenciadorController {
     @PostMapping (path = "/contas")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<GerenciadorModel> cadastrarConta(@RequestBody GerenciadorModel contas){
-        GerenciadorModel gerenciadorModel = service.cadastrarContas(contas);
-        return  new ResponseEntity<>(gerenciadorModel, HttpStatus.CREATED);
+
+         return ResponseEntity.ok(service.cadastrarContas(contas));
     }
 
     @PutMapping (path ="/contas/{id}")
@@ -44,7 +44,7 @@ public class GerenciadorController {
 
 
     @DeleteMapping (path = "/contas/{id}")
-    public void deletarConta(@PathVariable Long conta){
-        service.deletarConta(conta);
+    public void deletarConta(@PathVariable Long id){
+        service.deletarConta(id);
     }
 }
