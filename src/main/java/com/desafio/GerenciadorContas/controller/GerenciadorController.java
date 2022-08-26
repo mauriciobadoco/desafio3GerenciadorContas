@@ -2,6 +2,7 @@ package com.desafio.GerenciadorContas.controller;
 
 import com.desafio.GerenciadorContas.model.AtualizaStatus;
 import com.desafio.GerenciadorContas.model.GerenciadorModel;
+import com.desafio.GerenciadorContas.model.MostrarContasModel;
 import com.desafio.GerenciadorContas.service.GerenciadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,8 @@ public class GerenciadorController {
     private GerenciadorService service;
 
     @GetMapping (path = "/contas")
-    public ResponseEntity<List<GerenciadorModel>> buscarContas(){
-        return ResponseEntity.ok(service.buscarContas());
+    public ResponseEntity<List<MostrarContasModel>> buscarContas(){
+        return ResponseEntity.ok(service.mostrarContas());
     }
 
     @GetMapping (path = "/contas/{id}")
