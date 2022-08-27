@@ -1,5 +1,7 @@
 package com.desafio.GerenciadorContas.controller;
 
+import com.desafio.GerenciadorContas.Enum.StatusConta;
+import com.desafio.GerenciadorContas.Enum.TipoConta;
 import com.desafio.GerenciadorContas.model.AtualizaStatus;
 import com.desafio.GerenciadorContas.model.GerenciadorModel;
 import com.desafio.GerenciadorContas.model.MostrarContasModel;
@@ -27,6 +29,18 @@ public class GerenciadorController {
     @GetMapping (path = "/contas/{id}")
     public ResponseEntity<Optional<GerenciadorModel>> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @GetMapping (path = "/contas/tipo/{tipoConta}")
+    public ResponseEntity<List<GerenciadorModel>> buscarPorTipo(@PathVariable TipoConta tipoConta){
+
+        return ResponseEntity.ok(service.buscarPorTipo(tipoConta));
+    }
+
+    @GetMapping (path = "/contas/status/{statusConta}")
+    public ResponseEntity<List<GerenciadorModel>> buscarPorStatus(@PathVariable StatusConta statusConta){
+
+        return ResponseEntity.ok(service.buscarPorStatus(statusConta));
     }
 
     @PostMapping (path = "/contas")

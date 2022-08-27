@@ -24,7 +24,6 @@ public class MostrarContasModel {
         nome= gerenciadorModel.getNome();
         valor = gerenciadorModel. getValor();
         status = gerenciadorModel.getStatus();
-
     }
 
     public static List<MostrarContasModel> convert(List<GerenciadorModel> gerenciadorModel){

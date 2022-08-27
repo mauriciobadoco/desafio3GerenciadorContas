@@ -1,6 +1,7 @@
 package com.desafio.GerenciadorContas.service;
 
 import com.desafio.GerenciadorContas.Enum.StatusConta;
+import com.desafio.GerenciadorContas.Enum.TipoConta;
 import com.desafio.GerenciadorContas.Enum.VerificaStatus;
 
 import com.desafio.GerenciadorContas.model.AtualizaStatus;
@@ -36,6 +37,13 @@ public class GerenciadorService {
         return repository.findById(conta);
     }
 
+    public List<GerenciadorModel> buscarPorTipo(TipoConta tipoConta){
+    return repository.findByTipo(tipoConta);
+}
+
+    public List<GerenciadorModel> buscarPorStatus(StatusConta statusConta){
+        return repository.findByStatus(statusConta);
+    }
 
     public GerenciadorModel cadastrarContas(GerenciadorModel contas) {
         VerificaStatus verificaStatus = new VerificaStatus();
